@@ -98,8 +98,8 @@ def get_google_sheets_data(sheet_name, json_file):
     return data
 
 # loading the trained ml models
-diabetes_model = pickle.load(open('../Model/diabetes_model.sav', 'rb'))
-heart_disease_model=pickle.load(open('../Model/heart_disease_model.sav','rb'))
+diabetes_model = pickle.load(open('Model/diabetes_model.sav', 'rb'))
+heart_disease_model=pickle.load(open('Model/heart_disease_model.sav','rb'))
 
 # main sidebar
 with st.sidebar:
