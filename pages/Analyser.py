@@ -108,7 +108,7 @@ with st.sidebar:
                         menu_icon='hospital-fill',
                         icons=['activity',  'heart'],
                         default_index=0)
-    st.image("../images/Logo.png")
+    st.image("images/Logo.png")
 
 # Diabetes Prediction Page sidebar
 if selected == 'Diabetes Analyser':
