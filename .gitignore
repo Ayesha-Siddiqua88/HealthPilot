@@ -1,0 +1,23 @@
+# Other common files and folders to ignore
+../danger
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# MacOS and Windows files
+.DS_Store
+Thumbs.db
+danger
+../danger/diabetes.json
+../danger/heart.json

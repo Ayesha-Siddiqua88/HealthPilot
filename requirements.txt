@@ -1,0 +1,12 @@
+# requirements.txt
+
+pandas
+streamlit
+gspread
+plotly
+scikit-learn
+python-dotenv
+streamlit-option-menu
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
