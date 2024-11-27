@@ -4,7 +4,7 @@ import streamlit as st
 import gspread
 import plotly.graph_objects as go
 import plotly.express as px
-import openai
+# import openai
 
 from streamlit_option_menu import option_menu
 from google.oauth2 import service_account
@@ -96,56 +96,6 @@ def get_google_sheets_data(sheet_name, json_file):
     sheet = client.open(sheet_name).sheet1
     data = sheet.get_all_records()
     return data
-
-
-def response(user_query, sheet_data):
-    data_summary = "\n".join([f"{key}: {value}" for record in sheet_data for key, value in record.items()])
-    
-    # OpenAI Prompt
-    prompt = (
-        f"You are a health assistant specializing in diabetes and heart disease. "
-        f"Here is the user's historical data:\n{data_summary}\n\n"
-        f"User's question: {user_query}\n"
-        f"Provide detailed recommendations tailored to the user's profile."
-    )
-    
-    # Generate OpenAI response
-    try:
-        response = openai.Completion.create(
-            engine="text-davinci-003",
-            prompt=prompt,
-            max_tokens=150,
-            temperature=0.7
-        )
-        return response.choices[0].text.strip()
-    except Exception as e:
-        return f"Error generating response: {str(e)}"
-    
-    
-def chatbot_section(selected_condition):
-    st.markdown(f"### Chatbot for {selected_condition}")
-    
-    # Load relevant data from Google Sheets
-    if selected_condition == "Diabetes":
-        sheet_name = "Diabetes spreadsheet"
-        json_file = "Diabetes.json"
-    else:
-        sheet_name = "Heart spreadsheet"
-        json_file = "../danger/heart.json"
-    sheet_data = get_google_sheets_data(sheet_name, json_file)
-    
-    # User Query
-    user_query = st.text_input(f"Ask me anything about your {selected_condition} health:")
-    
-    if st.button("Submit", key=f"get_recommendations_{selected_condition}"):
-        if user_query:
-            result = response(user_query, sheet_data)
-            st.markdown("## Recommendations:")
-            st.write(result)
-        else:
-            st.warning("Please enter a question!")
-    
- 
 
 # loading the trained ml models
 diabetes_model = pickle.load(open('../Model/diabetes_model.sav', 'rb'))
